@@ -58,7 +58,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header absolute-center container top-10 z-20">
+      <div className="container z-20 header absolute-center top-10">
         <header className="z-50">
           <div className="py-4 px-7 tab-800:px-10 bg-white rounded-[50px] border border-[#00000014] flex justify-between w-full items-center">
             {/* {width > 800 ? <SmallLogo /> : <Logo />} */}
@@ -76,19 +76,19 @@ const Header = () => {
             </nav>
             <div className="flex max-tab-800:hidden gap-[10px] transition-all duration-300 lg:gap-8 items-center">
               <Link
-                className="text-sm lg-1150:text-base text-blue-100 font-medium"
+                className="text-sm font-medium text-blue-100 lg-1150:text-base"
                 href="/login"
               >
                 Login
               </Link>
               <Link
-                className="text-sm lg-1150:text-base font-medium text-white bg-blue-200 py-4 px-8 rounded-3xl"
+                className="px-8 py-4 text-sm font-medium text-white bg-blue-200 lg-1150:text-base rounded-3xl"
                 href="/signup"
               >
                 Sign up free
               </Link>
             </div>
-            <div className="tab-800:hidden cursor-pointer">
+            <div className="cursor-pointer tab-800:hidden">
               {!isOpen ? (
                 <svg
                   onClick={openNav}
@@ -125,12 +125,12 @@ const Header = () => {
       </div>
 
       {isOpen ? (
-        <nav className="h-full tab-800:hidden absolute z-10 bg-white w-full">
+        <nav className="absolute z-10 w-screen h-screen overflow-y-hidden bg-white tab-800:hidden">
           <ul className="flex-col text-center absolute-center mt-[150px] space-y-7 items-center justify-center top-60 transition-all duration-300 ">
             {NavLinks.map(({ name, url }) => (
               <li onClick={() => setIsOpen(false)} className="" key={name}>
                 <Link
-                  className="text-lg font-medium text-gray-100 p-1 active:text-blue-100 hover:text-blue-100 transition-all duration-300"
+                  className="p-1 text-lg font-medium text-gray-100 transition-all duration-300 active:text-blue-100 hover:text-blue-100"
                   href={url}
                 >
                   {name}
@@ -138,11 +138,11 @@ const Header = () => {
               </li>
             ))}
             <div className=" flex flex-col gap-[20px] transition-all duration-300 lg:gap-8 items-center">
-              <Link className="text-lg text-blue-100 font-medium" href="/login">
+              <Link className="text-lg font-medium text-blue-100" href="/login">
                 Login
               </Link>
               <Link
-                className="text-lg font-medium text-white bg-blue-200 py-4 px-8 rounded-3xl"
+                className="px-8 py-4 text-lg font-medium text-white bg-blue-200 rounded-3xl"
                 href="/signup"
               >
                 Sign up free
