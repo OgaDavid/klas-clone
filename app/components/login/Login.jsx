@@ -1,53 +1,60 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+
 
 const LoginForm = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleEmailChange = (event) => {
-        setEmail(event.target.value);
-    };
-
-    const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
-    };
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(`Email: ${email}, Password: ${password}`);
-    };
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+            email: Yup.string()
+                .email('Invalid email address')
+                .required('Email is required'),
+            password: Yup.string()
+                .min(6, 'Password must be at least 6 characters')
+                .required('Password is required'),
+        }),
+        onSubmit: (values) => {
+            console.log(values);
+        },
+    });
 
     return (
-        <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-        >
-            <label htmlFor="email">Email:</label>
-            <motion.input
-                type="email"
+        <form onSubmit={formik.handleSubmit}>
+            <label htmlFor="email">Email</label>
+            <input
                 id="email"
-                value={email}
-                onChange={handleEmailChange}
-                whileHover={{ scale: 1.1 }}
-                whileFocus={{ scale: 1.2 }}
+                name="email"
+                type="email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
             />
-            <label htmlFor="password">Password:</label>
-            <motion.input
-                type="password"
+            {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+            ) : null}
+
+            <label htmlFor="password">Password</label>
+            <input
                 id="password"
-                value={password}
-                onChange={handlePasswordChange}
-                whileHover={{ scale: 1.1 }}
-                whileFocus={{ scale: 1.2 }}
+                name="password"
+                type="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
             />
-            <motion.button type="submit" whileHover={{ scale: 1.1 }}>
-                Login
-            </motion.button>
-        </motion.form>
-    );
+            {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+            ) : null}
+
+            <button type="submit">Submit</button>
+        </form>
+
+    )
 };
 
 export default LoginForm;
