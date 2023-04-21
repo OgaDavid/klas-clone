@@ -1,6 +1,11 @@
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { SessionProvider } from 'next-auth'
+import { Children } from "react";
+import  {useSession}  from 'next-auth/react'
+
+
 
 export const metadata = {
   title: {
@@ -46,13 +51,17 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
+
   return (
-    <html lang="en">
-      <body className="">
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
+  
+      <html lang="en">
+        <body className="">
+          <Header />
+          {children}
+          <Footer />
+        </body>
+      </html>
+   
   );
 }
