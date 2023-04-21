@@ -3,10 +3,10 @@ import LoginForm from '../components/login/Login'
 
 const LoginPage = () => {
   return (
-    <main className='container'>
-      <div className="">
+    <main className="py-[80px] mt-[100px]">
+      <section className="">
         <LoginForm />
-      </div>
+      </section>
     </main>
   )
 }

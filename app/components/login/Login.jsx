@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Formik } from 'formik';
-import * as yup from 'yup';
+"use client";
+
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 
 const LoginForm = () => {
